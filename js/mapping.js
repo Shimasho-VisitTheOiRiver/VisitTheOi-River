@@ -1,9 +1,11 @@
 ﻿//ハンバーガーメニュー
 $(function(){
+/*
   $("#headera").click(function(){
     $("#headera").slideToggle();
     return false;
   });
+*/
   $(window).resize(function(){
     var win = $(window).width();
     var p = 769;

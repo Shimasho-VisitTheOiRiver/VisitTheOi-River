@@ -1,0 +1,253 @@
+@charset "UTF-8";
+
+body{
+  font-family: 'メイリオ','ヒラギノ角ゴ Pro W6','HiraKakuPro-W6'
+}
+  
+/* 一括で全ての要素の余白をゼロに指定 */
+* {
+  padding: 0;
+  margin: 0;
+}
+
+a:link {
+  color: #0000ff;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #990099;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #ff0000;
+  text-decoration: underline;
+}
+
+/* ---------------------------------------- レイアウトに関する指定 */
+
+
+#wrapper {
+  /*text-align: left;*/
+  margin: 0 auto;
+  hight: 100%;
+  width: 100%;
+}
+
+@media screen and (min-width: 769px){
+
+/*レスポンシブデザイン(仮）
+  #header:before{
+    display: block;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    background: #000;
+  }
+  #header a:before, #header a:after{
+    display: block;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    width: 20px;
+    height: 4px;
+    background: #FFF;
+  }
+  #header a:before{
+    margin-top: -6px;
+  }
+  #header a:after{
+    margin-top: 2px;
+  }
+}
+*/
+
+#header {
+/*border: 1px #000000 solid;*/
+  content: "";
+  display: block;
+  clear: both;
+  margin:0 auto;
+  hight: 100%;
+  width: 70%;
+}
+
+#headera {
+/*border: 3px #FF00FF solid;*/
+  content: "";
+  display: block;
+  clear: both;
+  /*hight: 100%;*/
+  width: 100%;
+  margin: 0 auto;
+}
+
+#headleft {
+/*border: 1px #FF0000 solid;*/
+  float: left;
+  margin:0 auto;
+  padding-left: 3%;
+  /*hight: 100%;*/
+  width: 20%;
+}
+#headmid {
+/*border: 1px #00FF00 solid;*/
+  float: left;
+  margin:0 auto;
+  text-align: center;
+  /*hight: 100%;*/
+  width: 50%;
+  //color: #FFFFFF;
+}
+#headright {
+/*border: 1px #0000FF solid;*/
+  float: left;
+  text-align:right;
+  margin:0 auto;
+  padding-right: 3%;
+  /*hight: 100%;*/
+  width: 20%;
+}
+
+
+#headerc:after {
+  margin:0 auto;
+  content: "";
+  display: block;
+  clear: both;
+  margin:0 auto;
+  /*text-align: center;*/
+  /*hight: 50%;*/
+  width: 100%;
+}
+
+#headerc1 {
+/*border: 1px #FF0000 solid;*/
+  float: left;
+  text-align: center;
+  margin:0 auto;
+  /*hight: 100%;*/
+  width: 19%;
+}
+#headerc2 {
+/*border: 1px #00FF00 solid;*/
+  float: left;
+  text-align: center;
+  margin:0 auto;
+  /*hight: 100%;*/
+  width: 20%;
+}
+#headerc3 {
+/*border: 1px #0000FF solid;*/
+  float: left;
+  text-align: center;
+  margin:0 auto;
+  /*hight: 100%;*/
+  width: 20%;
+}
+#headerc4 {
+/*border: 1px #FFFF00 solid;*/
+  float: left;
+  text-align: center;
+  margin:0 auto;
+  /*hight: 100%;*/
+  width: 20%;
+}
+#headerc5 {
+/*border: 1px #FF00FF solid;*/
+  float: left;
+  text-align: center;
+  margin:0 auto;
+  /*hight: 100%;*/
+  width: 19%;
+}
+
+
+}
+
+#headerb {
+/*border: 1px #FFFF00 solid;*/
+  margin:5px auto;
+  clear: both;
+  text-align: center;
+  /*hight: 50%;*/
+  width: 100%;
+}
+#headerb img {
+  margin:0 auto;
+  hight: auto;
+  max-width: 100%;
+}
+
+
+#map {
+border: 3px #000000 solid;
+position: relative;
+padding-bottom: 35%;
+padding-top: 30px;
+margin: 0 auto;
+width: 70%;
+height: 60%;
+overflow: hidden;
+}
+ 
+#map iframe,
+#map object,
+#map embed {
+position: absolute;
+top: 0;
+left: 0;
+width: 70%;
+height: 60%;
+}
+
+#nolist {
+  
+}
+
+#circle {
+	width: 20px;
+	height: 20px;
+	background-color: rgb(247,52,22);
+	-moz-border-radius: 12px;
+	-webkit-border-radius: 12px;
+	border-radius: 12px;
+}
+#circle2 {
+	width: 20px;
+	height: 20px;
+	background-color: rgb(155,205,204);
+	-moz-border-radius: 12px;
+	-webkit-border-radius: 12px;
+	border-radius: 12px;
+}
+#circle3 {
+	width: 20px;
+	height: 20px;
+	background-color: rgb(251,151,136);
+	-moz-border-radius: 12px;
+	-webkit-border-radius: 12px;
+	border-radius: 12px;
+}
+#circle4 {
+	width: 20px;
+	height: 20px;
+	background-color: rgb(22,103,150);
+	-moz-border-radius: 12px;
+	-webkit-border-radius: 12px;
+	border-radius: 12px;
+}
+#circle5 {
+	width: 20px;
+	height: 20px;
+	background-color: rgb(154,102,151);
+	-moz-border-radius: 12px;
+	-webkit-border-radius: 12px;
+	border-radius: 12px;
+}

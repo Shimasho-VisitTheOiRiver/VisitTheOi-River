@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Visit the Oiriver! x Shimasho Map</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./css/mapping.css">
+
+    <script type="text/javascript" src="./js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.csv.js"></script>
+    <script type="text/javascript" src="./js/mapping.js"></script>
+    <!--script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="./js/geo.js"></script-->
+
+  </head>
+  <body onLoad="drop()">
+    <div id="wrapper">
+      <div id="header">
+        <div id="headera">
+          <div id="headleft"><a href="http://www.oi-river.com"><img src="./img/oi-rivericon.png"></a></div>
+          <div id="headmid">
+            | グルメ | おみやげ | あそび | 温泉 | お宿 |
+          </div>
+          <div id="headright">
+            <a href="https://twitter.com/oigawa_online"><img src="./img/sign-twitter.png"></a>
+            <a href="https://instagram.com/oigawadeaimashow/"><img src="./img/sign-insta.png"></a>
+            <a href="https://www.facebook.com/wewillbeinoiriver/"><img src="./img/sign-facebook.png"></a>
+          </div>
+        </div>
+        <div id="headerb">
+          <img src="./img/logo_01.png">
+        </div>
+        <div id="headerc">
+          <div id="headerc1"><div id="circle" style="color: red; display: inline-block; _display: inline;"></div>＝大鉄沿線で遊ぶ</div>
+          <div id="headerc2"><div id="circle2" style="color: red; display: inline-block; _display: inline;"></div>＝温泉で遊ぶ</div>
+          <div id="headerc3"><div id="circle3" style="color: red; display: inline-block; _display: inline;"></div>＝海で遊ぶ</div>
+          <div id="headerc4"><div id="circle4" style="color: red; display: inline-block; _display: inline;"></div>＝歴史で遊ぶ</div>
+          <div id="headerc5"><div id="circle5" style="color: red; display: inline-block; _display: inline;"></div>＝そのほかで遊ぶ</div>
+        </div>
+      </div>
+      <div id="map"></div>
+      <div id="nolist"></div>
+    </div>
+    
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEzvmWQ3NCcEdeqbd3dJ-V_ATt-SIfILQ&signed_in=true&callback=initMap"></script>
+    
+    
+  </body>
+</html>

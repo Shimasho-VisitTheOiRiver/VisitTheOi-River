@@ -1,4 +1,4 @@
-﻿/*ハンバーガーメニュー
+﻿//ハンバーガーメニュー
 $(function(){
   $("#headera").click(function(){
     $("#headera").slideToggle();
@@ -8,13 +8,13 @@ $(function(){
     var win = $(window).width();
     var p = 769;
     if(win > p){
-      $("#headera").show();
+      $("#headerb").show();
     } else {
-      $("#headera").hide();
+      $("#headerb").hide();
     }
   });
 });
-*/
+
 
 //空の配列宣言
 var neighborhoods = [" "];

@@ -227,6 +227,20 @@ height: 100%;
   width: 75%;
 }
 
+#visitlist{
+  //float: left;
+  margin:50px auto;
+  text-align: left;
+  width: 60%;
+}
+#visitlist li{
+display:inline;
+list-style-type:none;
+margin: 10px auto;
+width: 50%;
+float: left;
+}
+
 #circle {
 	width: 20px;
 	height: 20px;

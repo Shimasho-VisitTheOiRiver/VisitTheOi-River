@@ -23,10 +23,13 @@ var neighborhoods = [" "];
 var visitno=[" "];
 var visitinfo=[" "];
 var visiturl=[" "];
+//var visitlist=[" "];
 
 //CSVファイルの読み込み	
 $(function() {
   var csvList;
+  var target = '#visitlist';
+  var insert = '';
   $.ajax({
     url: './data/visitplace.csv',
     success: function(data) {
@@ -36,12 +39,20 @@ $(function() {
       
       // データを別配列に格納
       for (var i = 1; i < csvList.length -1; i++) {
-        neighborhoods.push(new google.maps.LatLng(csvList[i][7],csvList[i][8]));
+        neighborhoods.push(new google.maps.LatLng(csvList[i][8],csvList[i][9]));
         var no=1;
-        visitno.push(String('http://chart.apis.google.com/chart?chst=d_map_spin&chld=1.2|1|'+csvList[i][9]+'|13|_|'+csvList[i][1]));
-        visitinfo.push(csvList[i][3]+'</br>'+csvList[i][4]+'</br>'+csvList[i][5]);
-        visiturl.push(String(csvList[i][10]));
+        visitno.push(String('http://chart.apis.google.com/chart?chst=d_map_spin&chld=1.2|1|'+csvList[i][10]+'|13|_|'+csvList[i][1]));
+        visitinfo.push(csvList[i][4]+'</br>'+csvList[i][5]+'</br>'+csvList[i][6]);
+        visiturl.push(String(csvList[i][11]));
+        //visitlist.push(String(csvList[i][3]+'  【'+csvList[i][2])+'】'));
       };
+       for (var i = 1; i < csvList.length-1; i++) {
+                insert += '<li id="' + csvList[i][0] + '">';
+                insert += '<div class="image"><img src="' + csvList[i][12] + '" />'+ csvList[i][3] +'</div>';
+                insert += '<p class="sentence">'+'　　[' + csvList[i][2] + ']</p>';
+                insert += '</li>';
+            };
+            $(target).append(insert);
     }
   });
 });

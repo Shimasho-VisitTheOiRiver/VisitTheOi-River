@@ -3,14 +3,15 @@
   <head>
     <title>Visit the Oiriver! x Shimasho Map</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="./css/mapping.css">
 
     <script type="text/javascript" src="./js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="./js/jquery.csv.js"></script>
     <script type="text/javascript" src="./js/mapping.js"></script>
-    <!--script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <script type="text/javascript" src="./js/geo.js"></script-->
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="./js/geo.js"></script>
 
   </head>
   <body onLoad="drop()">
@@ -18,23 +19,22 @@
       <div id="header">
         <div id="headera">
           <div id="headleft"><a href="http://www.oi-river.com"><img src="./img/oi-rivericon.png"></a></div>
-          <div id="headmid">
-           <nav> 
-            <div id="js-globalNavigation" data-slide-type="upSlide" data-btn-position="leftTop"> 
-             <div class=" -menu_center"> 
-              <ul class="c-menu -menu_a"> 
-               <li class=" c-right c-sp-closer"><a href="#" id="js-sp-menu_closer"><span class=" icon-close"></span></a></li> 
-               <li><a href="junbichu.html" data-pid="92">グルメ</a></li> 
-               <li><a href="junbichu.html" data-pid="92">おみやげ</a></li> 
-               <li><a href="junbichu.html" data-pid="92">あそび</a></li> 
-               <li><a href="junbichu.html" data-pid="92">温泉</a></li> 
-               <li><a href="junbichu.html" data-pid="92">お宿</a></li> 
-              </ul> 
-             </div> 
-            </div> 
-            <div id="spNavigationTrigger" class=" c-sp_navigation_btn"></div> 
-           </nav> 
-          </div>
+          <div id="menu-box">
+            <div id="toggle"><a href="#">menu</a></div>
+            <ul id="headmid" class="">
+
+          <!--div id="headmid"-->
+               <li>×</li> 
+               <li><a href="http://www.oi-river.com/junbichu.html" data-pid="92">グルメ</a></li> 
+               <li><a href="http://www.oi-river.com/junbichu.html" data-pid="92">おみやげ</a></li> 
+               <li><a href="http://www.oi-river.com/junbichu.html" data-pid="92">あそび</a></li> 
+               <li><a href="http://www.oi-river.com/junbichu.html" data-pid="92">温泉</a></li> 
+               <li><a href="http://www.oi-river.com/junbichu.html" data-pid="92">お宿</a></li>  
+          <!--/div-->
+          
+            </ul>
+            </div>
+
           <div id="headright">
             <a href="https://twitter.com/oigawa_online"><img src="./img/sign-twitter.png"></a>
             <a href="https://instagram.com/oigawadeaimashow/"><img src="./img/sign-insta.png"></a>
@@ -58,7 +58,7 @@
       </div>
     </div>
     
-    <div id="visitlist"></div>
+    <div id="visitlist" style="list-style:none;"></div>
     
     
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEzvmWQ3NCcEdeqbd3dJ-V_ATt-SIfILQ&signed_in=true&callback=initMap"></script>

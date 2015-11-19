@@ -1,18 +1,24 @@
 ﻿//ハンバーガーメニュー
 $(function(){
-/*
-  $("#headera").click(function(){
-    $("#headera").slideToggle();
+  $("#toggle").click(function(){
+    $("#headmid").slideToggle();
     return false;
   });
-*/
+  $("#headmid li:nth-child(1)").click(function(){
+    $("#headmid").slideToggle();
+    return true;
+  });
   $(window).resize(function(){
     var win = $(window).width();
     var p = 769;
     if(win > p){
       $("#headerb").show();
+      $("#headmid").show();
+      $("#toggle").hide();
     } else {
       $("#headerb").hide();
+      $("#headmid").hide();
+      $("#toggle").show();
     }
   });
 });
@@ -48,8 +54,8 @@ $(function() {
       };
        for (var i = 1; i < csvList.length-1; i++) {
                 insert += '<li id="' + csvList[i][0] + '">';
-                insert += '<div class="image"><img src="' + csvList[i][12] + '" />'+ csvList[i][3] +'</div>';
-                insert += '<p class="sentence">'+'　　[' + csvList[i][2] + ']</p>';
+                insert += '<div class="image"><a href="'+ csvList[i][11] +'"><img src="' + csvList[i][12] + '" />'+ csvList[i][3] +'</div>';
+                insert += '<p class="sentence">'+'　　[' + csvList[i][2] + ']</p></a>';
                 insert += '</li>';
             };
             $(target).append(insert);

@@ -50,10 +50,10 @@ a:hover {
 @media only screen and (max-width: 480px) {
   #headmid{
     display: none;
-  }
+  }/*
   #headmid li{
     width: 100%;
-  }
+  }*/
   #toggle{
     margin:10px;
     display: block;
@@ -176,7 +176,7 @@ a:hover {
   #map {
     border: 3px #000000 solid;
     position: relative;
-    padding-bottom: 50%;
+    padding-bottom: 90%;
     padding-top: 30px;
     height: 0;
     overflow: hidden;

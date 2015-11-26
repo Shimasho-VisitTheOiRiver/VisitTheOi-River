@@ -45,10 +45,26 @@ $(function() {
       
       // データを別配列に格納
       for (var i = 1; i < csvList.length -1; i++) {
-        neighborhoods.push(new google.maps.LatLng(csvList[i][8],csvList[i][9]));
+        
+        //-------------------------------------------------------------------------------------------------------------座標重複時にLngをプラス方向にずらす
+        var lng='';
+        var flg=0;
+        for(var j=1;j<i;j++){
+          if(csvList[i][8]==csvList[j][8] && csvList[i][9]==csvList[j][9]){
+            flg=1;
+          }
+        }
+        
+        if(flg==1){
+            lng=Number(csvList[i][9])+0.00005;
+        }else{
+            lng=csvList[i][9];
+        }
+        
+        neighborhoods.push(new google.maps.LatLng(csvList[i][8],lng));
         var no=1;
-        visitno.push(String('http://chart.apis.google.com/chart?chst=d_map_spin&chld=1.2|1|'+csvList[i][10]+'|13|_|'+csvList[i][1]));
-        visitinfo.push(csvList[i][4]+'</br>'+csvList[i][5]+'</br>'+csvList[i][6]);
+        visitno.push(String(csvList[i][12]));
+        visitinfo.push('<div id="infowindow">'+csvList[i][4]+'</br>'+csvList[i][5]+'</br>'+csvList[i][6]+'</div>');
         visiturl.push(String(csvList[i][11]));
         //visitlist.push(String(csvList[i][3]+'  【'+csvList[i][2])+'】'));
       };

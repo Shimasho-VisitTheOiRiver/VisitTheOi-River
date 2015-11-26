@@ -30,6 +30,10 @@ a:hover {
   text-decoration: none;
 }
 
+#infowindow{
+  font-style: 'ヒラギノ角ゴ Pro W3',Hiragino Kaku Gothic Pro;
+}
+
 /* ---------------------------------------- レイアウトに関する指定 */
 
 
@@ -44,10 +48,10 @@ a:hover {
 /*-----------------------------------幅が480pxになったらの表示*/
 
 @media only screen and (max-width: 480px) {
-  #menu{
+  #headmid{
     display: none;
   }
-  #menu li{
+  #headmid li{
     width: 100%;
   }
   #toggle{
@@ -56,7 +60,9 @@ a:hover {
     position: relative;
     width: 100%;
     background: #FFFFFF;
+    
   }
+  
 
 
 /*-------------------------------------------バーガーアイコン描画*/
@@ -364,12 +370,11 @@ overflow: hidden;
 #map object,
 #map embed {
 position: absolute;
-top: 30px;
+top: 0px;
 left: 0;
-width: 75%;
+width: 100%;
 height: 100%;
 }
-
 
 }
 
@@ -392,17 +397,17 @@ height: 100%;
 /*------------------------体験名一覧表示*/
 
 #visitlist{
-  border: 1px #000000 solid;
+  //border: 1px #000000 solid;
   //float: left;
   margin:50px auto;
   text-align: left;
-  width: 65%;
+  width: 75%;
   vertical-align:middle;
 }
 #visitlist li{
 display:inline;
 list-style-type:none;
-margin: 10px auto;
+margin: 0px auto;
 width: 50%;
 float: left;
 }

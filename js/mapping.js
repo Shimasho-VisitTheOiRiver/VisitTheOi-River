@@ -29,7 +29,13 @@ var neighborhoods = [" "];
 var visitno=[" "];
 var visitinfo=[" "];
 var visiturl=[" "];
-//var visitlist=[" "];
+
+//--------------------------------------------------------------------------------------------------------------------マーカークリック回数を記録し別ページに飛ぶアクションの変数
+var clicks=0;
+var zoom=1;
+
+//--------------------------------------------------------------------------------------------------------------------他のinfowinがあればcloseするための変数
+var currentInfowin=null;
 
 //CSVファイルの読み込み	
 $(function() {
@@ -64,15 +70,16 @@ $(function() {
         neighborhoods.push(new google.maps.LatLng(csvList[i][8],lng));
         var no=1;
         visitno.push(String(csvList[i][12]));
-        visitinfo.push('<div id="infowindow">'+csvList[i][4]+'</br>'+csvList[i][5]+'</br>'+csvList[i][6]+'</div>');
+        visitinfo.push('<div id="infowindow">'+csvList[i][4]+'</br><a href="http://maps.google.com/maps?daddr='+csvList[i][8]+','+csvList[i][9]+'&saddr=%E7%8F%BE%E5%9C%A8%E5%9C%B0&dirflg=d&t=m">　現在地からルート検索</a>');
         visiturl.push(String(csvList[i][11]));
-        //visitlist.push(String(csvList[i][3]+'  【'+csvList[i][2])+'】'));
       };
        for (var i = 1; i < csvList.length-1; i++) {
-                insert += '<li id="' + csvList[i][0] + '">';
-                insert += '<div class="image"><a href="'+ csvList[i][11] +'"><img src="' + csvList[i][12] + '" />'+ csvList[i][3] +'</div>';
+                insert += '<li id="visitlistli' + csvList[i][0] + '">';
+                insert += '<div class="image"><a href="javascript:{window.scrollTo( 0 , 215 );map.setZoom(18);map.panTo(new google.maps.LatLng'+ neighborhoods[i] +');}"><img src="' + csvList[i][12] + '" />'+ csvList[i][3] +'</div>';
                 insert += '<p class="sentence">'+'　　[' + csvList[i][2] + ']</p></a>';
                 insert += '</li>';
+                zoom=map.getZoom();
+                clicks=1;
             };
             $(target).append(insert);
     }
@@ -97,25 +104,33 @@ function initMap() {
 }
 
 //吹き出しを作成し、mouseOver & Outイベント作成
-function attachMessage(marker, msg, urls) {
+function attachMessage(marker, msg, urls, latlng) {
   //infowindowを作成
     var infowin=new google.maps.InfoWindow({
         content: msg
       });
       
-  //マウスオーバー処理
+  //---------------------------------------------------------------------------------マウスオーバーでinfowinを開く&別のinfowinを閉じる
     google.maps.event.addListener(marker, 'mouseover', function(event) {
+      if (currentInfowin) {
+      	currentInfowin.close();
+      }
       infowin.open(map, marker);
+      currentInfowin=infowin;
     });
-    
-  //マウスアウト処理（マウスが外れたら）
-    google.maps.event.addListener(marker, 'mouseout', function(event) {
-      infowin.close();
-    });
-    
-  //クリック処理
+  //---------------------------------------------------------------------------------クリック処理（mapのzoomによって処理を変える）
     google.maps.event.addListener(marker, 'click', function(event){
-      location.href = urls;
+      zoom=map.getZoom();
+      map.panTo(latlng);
+      map.setZoom(18);
+      if(clicks==1 && zoom<18){
+      	clicks=0;
+      }else if(clicks==1 && map.getZoom()==18){
+      	location.href = urls;
+      }
+      else{
+      	clicks=1;
+      }
     });
 }
 
@@ -129,6 +144,7 @@ function drop() {
       icon: visitno[i],
       zIndex: neighborhoods.length - i,
     }));
-    attachMessage(markers[i], visitinfo[i], visiturl[i]);
+    attachMessage(markers[i], visitinfo[i], visiturl[i], neighborhoods[i]);
   }
 }
+

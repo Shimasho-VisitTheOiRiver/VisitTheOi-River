@@ -1,30 +1,4 @@
-﻿//ハンバーガーメニュー
-$(function(){
-  $("#toggle").click(function(){
-    $("#headmid").slideToggle();
-    return false;
-  });
-  $("#headmid li:nth-child(1)").click(function(){
-    $("#headmid").slideToggle();
-    return true;
-  });
-  $(window).resize(function(){
-    var win = $(window).width();
-    var p = 769;
-    if(win > p){
-      $("#headerb").show();
-      $("#headmid").show();
-      $("#toggle").hide();
-    } else {
-      $("#headerb").hide();
-      $("#headmid").hide();
-      $("#toggle").show();
-    }
-  });
-});
-
-
-//空の配列宣言
+﻿//空の配列宣言
 var neighborhoods = [" "];
 var visitno=[" "];
 var visitinfo=[" "];
@@ -39,50 +13,82 @@ var currentInfowin=null;
 
 //CSVファイルの読み込み	
 $(function() {
-  var csvList;
-  var target = '#visitlist';
-  var insert = '';
-  $.ajax({
-    url: './data/visitplace.csv',
-    success: function(data) {
-    
-      // csvを配列に格納
-      csvList = $.csv()(data);
-      
-      // データを別配列に格納
-      for (var i = 1; i < csvList.length -1; i++) {
-        
-        //-------------------------------------------------------------------------------------------------------------座標重複時にLngをプラス方向にずらす
-        var lng='';
-        var flg=0;
-        for(var j=1;j<i;j++){
-          if(csvList[i][8]==csvList[j][8] && csvList[i][9]==csvList[j][9]){
-            flg=1;
-          }
-        }
-        
-        if(flg==1){
-            lng=Number(csvList[i][9])+0.00005;
-        }else{
-            lng=csvList[i][9];
-        }
-        
-        neighborhoods.push(new google.maps.LatLng(csvList[i][8],lng));
-        var no=1;
-        visitno.push(String(csvList[i][12]));
-        visitinfo.push('<div id="infowindow">'+csvList[i][4]+'</br><a href="http://maps.google.com/maps?daddr='+csvList[i][8]+','+csvList[i][9]+'&saddr=%E7%8F%BE%E5%9C%A8%E5%9C%B0&dirflg=d&t=m">　現在地からルート検索</a>');
-        visiturl.push(String(csvList[i][11]));
-      };
-       for (var i = 1; i < csvList.length-1; i++) {
-                insert += '<li id="visitlistli' + csvList[i][0] + '">';
-                insert += '<div class="image"><a href="javascript:{window.scrollTo( 0 , 215 );map.setZoom(18);map.panTo(new google.maps.LatLng'+ neighborhoods[i] +');}"><img src="' + csvList[i][12] + '" />'+ csvList[i][3] +'</div>';
-                insert += '<p class="sentence">'+'　　[' + csvList[i][2] + ']</p></a>';
-                insert += '</li>';
-                zoom=map.getZoom();
-                clicks=1;
-            };
-            $(target).append(insert);
+  //ハンバーガーメニュー
+  $("#toggle").click(function(){
+    $("#headmid").slideToggle();
+    return false;
+  });
+
+  $("#headmid li:nth-child(1)").click(function(){
+    $("#headmid").slideToggle();
+    return true;
+  });
+
+  $(window).resize(function(){
+    var win = $(window).width();
+    var p = 769;
+    if(win > p){
+      $("#headerb").show();
+      $("#headmid").show();
+      $("#toggle").hide();
+    } else {
+      $("#headerb").hide();
+      $("#headmid").hide();
+      $("#toggle").show();
     }
+  });
+
+  //ロケーション読み込み＆ピンを設置
+  $(document).on("load", function() {
+    var csvList;
+    var target = '#visitlist';
+    var insert = '';
+    $.ajax({
+      url: './data/visitplace.csv',
+      success: function(data) {
+      
+        // csvを配列に格納
+        csvList = $.csv()(data);
+        
+        // データを別配列に格納
+        for (var i = 1; i < csvList.length -1; i++) {
+          
+          //-------------------------------------------------------------------------------------------------------------座標重複時にLngをプラス方向にずらす
+          var lng = '';
+          var flg = 0;
+          for ( var j = 1; j < i; j++ ) {
+            if ( csvList[i][8] == csvList[j][8] && csvList[i][9] == csvList[j][9] )　{
+              flg = 1;
+            }
+          }
+          
+          if ( flg == 1 ) {
+            lng = Number(csvList[i][9])+0.00005;
+          } else {
+            lng = csvList[i][9];
+          }
+          
+          neighborhoods.push(new google.maps.LatLng(csvList[i][8],lng));
+          var no = 1;
+          visitno.push(String(csvList[i][12]));
+          visitinfo.push('<div id="infowindow">'+csvList[i][4]+'</br><a href="http://maps.google.com/maps?daddr='+csvList[i][8]+','+csvList[i][9]+'&saddr=%E7%8F%BE%E5%9C%A8%E5%9C%B0&dirflg=d&t=m">　現在地からルート検索</a>');
+          visiturl.push(String(csvList[i][11]));
+        };
+
+        for ( var i = 1; i < csvList.length - 1; i++ ) {
+          insert += '<li id="visitlistli' + csvList[i][0] + '">';
+          insert += '<div class="image"><a href="javascript:{window.scrollTo( 0 , 215 );map.setZoom(18);map.panTo(new google.maps.LatLng'+ neighborhoods[i] +');}"><img src="' + csvList[i][12] + '" />'+ csvList[i][3] +'</div>';
+          insert += '<p class="sentence">'+'　　[' + csvList[i][2] + ']</p></a>';
+          insert += '</li>';
+          zoom=map.getZoom();
+          clicks=1;
+        };
+
+        $(target).append(insert);
+
+        drop();
+      }
+    });
   });
 });
 
